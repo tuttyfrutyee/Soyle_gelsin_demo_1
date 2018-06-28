@@ -1,0 +1,16 @@
+					giriş
+			admin(1)			normal(2)
+
+
+		restoran ayarları(1)  	| 	masa gözetleme(1,2)
+								|
+	*							|	*
+								|
+								|
+								|
+								|
+								|
+								|
+								|
+								|
+								|

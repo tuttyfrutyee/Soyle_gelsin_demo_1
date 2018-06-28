@@ -1,0 +1,13 @@
+.masa_card{
+	background-color : rgba(0, 200, 0, 0.5);
+	height: 100%;
+}
+.masa_card_context{
+	height: 100px;
+  display: flex;
+justify-content: center; /* align horizontal */
+align-items: center;
+}
+.masa_card_context p{
+	margin : 0px;
+}
