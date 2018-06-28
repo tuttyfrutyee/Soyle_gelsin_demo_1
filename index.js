@@ -2,7 +2,8 @@ var express = require("express")
 var mongoose = require("mongoose");
 var router = require("./routes/app.js")
 var passport = require("passport")
-var cookieSession = require("cookie-session");
+var expressSession = require("express-session")
+var MongoStore = require("connect-mongo")(expressSession);
 var bodyParser = require("body-parser");
 //passport-setup
 	require("./config/passport-setup.js")
@@ -18,9 +19,11 @@ mongoose.connect("mongodb://localhost/Soyle_Gelsin",function(err){
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-app.use(cookieSession({
-	maxAge : 24 * 60 * 60 * 1000,
-	keys: ["tuttyfrutyee"]
+app.use(expressSession({
+	store: new MongoStore({url : "mongodb://localhost/session_store" }),
+    secret: 'tuttyfrutyee',
+    resave: false,
+    saveUninitialized : true
 }));
 
 app.use(bodyParser.urlencoded({extended:false}));

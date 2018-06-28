@@ -25,7 +25,7 @@ router.get("/home",function(req,res){
 });
 
 router.post("/home",function(req,res){
-	  passport.authenticate('local', {session:false}, function(err, user, info) {
+	  passport.authenticate('local', function(err, user, info) {
     if (err) { 
     	return res.redirect("/home"); }
 
