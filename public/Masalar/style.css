@@ -1,13 +1,42 @@
 .masa_card{
-	background-color : rgba(0, 200, 0, 0.5);
 	height: 100%;
+	border-radius: 0.3vw;
 }
 .masa_card_context{
-	height: 100px;
+	height: 100%;
   display: flex;
 justify-content: center; /* align horizontal */
 align-items: center;
 }
 .masa_card_context p{
 	margin : 0px;
+}
+
+.index_Numbers {
+	font-size: 3vw;
+}
+
+.online {
+	background-color : rgba(0, 200, 0, 0.5);
+}
+
+.offline{
+	background-color : rgba(200, 0, 0, 0.5);
+}
+.table-color_blue{
+	color : #fff;
+    background-color: #17a2b8;
+}
+.table-color_grey{
+	color : #fff;
+	background-color :	#C0C0C0 ;
+}
+.stick_it{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5vmin ;
+}
+
+.switch_off{
+	display : none;
 }

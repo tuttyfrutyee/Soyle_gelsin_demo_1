@@ -1,0 +1,7 @@
+[project : "Soyle_gelsin_demo_1" ,
+todos :
+*Siparişleri felan verebilmek için uyduruk bir sayfa yap(kendin için)
+*Her restoranın kendine ait yemek databaseini oluştur
+*Table infoyu real-time yap
+*Order list tarafını yap , real time ofcourse
+]

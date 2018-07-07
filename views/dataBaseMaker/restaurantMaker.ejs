@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>restaurantMaker</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<div class="container">
+
+	<div class="jumbotron" style = "text-align: center">
+	  <h1 class="display-5">TuttyFruty / Welcome Sir!</h1>
+	</div>
+
+	<div id="createRestaurant">
+	<p class="alert alert-info"> Create Restaurant </p>
+		<form id="createRestaurantForm" method="post" action="/dataBase/maker/createRestaurant">
+		  <div class="form-group">
+		    <label for="restaurantName">Restaurant Name</label>
+		    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name">
+		    <button type = "submit" class="btn btn-primary">Submit for create Restaurant</button>
+
+		  </div>
+		</form>
+	</div>
+	<div id="createTable">
+		<p class="alert alert-info"> Create tables </p>
+		<form id="joinTableForm" method="post" action="/dataBase/maker/createTables">
+		  <div class="form-group">
+		    <label for="restaurantName">Restaurant Name : </label>
+		    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name">
+
+		    <label for="tableCount"> Enter table count </label>
+		    <input type="form-text" class="form-control" id = "tableCount" name="tableCount" placeholder="Enter table count">
+
+		 	<button type = "submit" class="btn btn-primary">Submit for Create Table</button>
+		  </div>
+		</form>
+	</div>
+
+	<div id="joinTable">
+		<p class="alert alert-info"> Join a table with restaurant </p>
+		<form id="joinTable" method="post" action="/dataBase/maker/joinTable">
+		  <div class="form-group">
+		    <label for="restaurantName">Restaurant Name : </label>
+		    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name">
+
+		    <label for="tableNo">Table No: </label>
+		    <input type="form-text" class ="form-control" id="tableNo" name="tableNo" placeholder="Enter table no:">
+
+		    <label for="customerName"> Join Name : </label>
+		    <input type="form-text" class="form-control" id = "customerName" name="customerName" placeholder="Enter join name">
+
+		 	<button type = "submit" class="btn btn-primary">Submit for Join Table</button>
+		  </div>
+		</form>
+	</div>
+	<div id="orderFood">
+		<p class="alert alert-info"> Order Food </p>
+		<form id="orderFoodForm" method="post" action="/dataBase/maker/orderFood">
+		<div class="form-group">
+			<label for="restaurantName">Restaurant Name</label>
+		    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName"  placeholder="Enter restaurant name">
+
+		    <label for="tableNo">Table Number</label>
+		    <input type="form-text" class="form-control" id="tableNo" name = "tableNo" placeholder="Enter table Number">
+
+		    <label for="customerName">Customer Name</label>
+		    <input type="form-text" class="form-control" id="customerName" name = "customerName" placeholder="Enter customername">
+
+		    <label for="productName">productName</label>
+		    <input type="form-text" class="form-control" id="productName" name = "productName" placeholder="Enter productname">
+
+		    <button type = "submit" class="btn btn-primary">Submit for Order Food</button>
+		</div>
+		</form>
+	</div>
+	<div id="createFoodDataBase">
+		<p class="alert alert-info"> Create Food Data Base </p>
+		<form id="createFoodDataBase" method="post" action="/dataBase/maker/foodDataBase">
+		<div class="form-group">
+			<label for="restaurantName">Restaurant Name</label>
+		    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName"  placeholder="Enter restaurant name">
+
+		    <label for="productType">Product Type</label>
+		    <input type="form-text" class="form-control" id="productType" name = "productType" placeholder="Enter productType">
+
+		    <label for="productName">Product Name</label>
+		    <input type="form-text" class="form-control" id="productName" name = "productName" placeholder="Enter productname">
+
+		    <label for="cost">Cost</label>
+		    <input type="form-text" class="form-control" id="cost" name = "cost" placeholder="Enter cost">
+
+		    <button type = "submit" class="btn btn-primary">Submit for add food to database</button>
+		</div>
+		</form>
+	</div>
+		<div class="jumbotron" style = "text-align: center">
+	 	 <h1 class="display-5">Order Maker</h1>
+		</div>
+</div>
+
+</body>
+</html>

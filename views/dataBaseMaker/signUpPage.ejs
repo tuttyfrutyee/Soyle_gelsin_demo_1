@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+  <div class="container">
+	<p> Sign UP! </p>
+	<form id="signUp" method="post" action="/dataBase/maker/signUp">
+  <div class="form-group">
+    <label for="userName">UserName</label>
+    <input type="form-text" class="form-control" id="userName" name="userName"  placeholder="Enter username">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <label for="restaurantName">restaurantName</label>
+    <input type="form-text" class="form-control" id="restaurantName" name="restaurantName" placeholder="Enter your restaurantName">
+  </div>
+
+  <div class="form-group form-check">
+    <label class="form-check-label" for="exampleCheck1">Admin : </label><br>
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="admin" value = "true"> Sign in as admin<br>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+</html>

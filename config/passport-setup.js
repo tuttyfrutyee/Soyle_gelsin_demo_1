@@ -1,6 +1,6 @@
 const passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/model-User.js");
+const User = require("../models/User/model-User.js");
 
 function passwordValidator(user, passwordCandidate){
 	if(user.password === passwordCandidate) return true
