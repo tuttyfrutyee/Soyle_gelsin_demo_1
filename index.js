@@ -1,3 +1,7 @@
+//Global variables
+Socket_bag = {};
+
+
 var express = require("express")
 var secrets = require("./private/secrets.js")
 var http = require("http")
@@ -10,12 +14,13 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var socketio = require("socket.io");
 var passportSocketIo = require("passport.socketio");
+var DataBaseApi = require("./routes/dataBaseApi.js")
 //passport-setup
 	require("./config/passport-setup.js")
 
 var bodyParser = require("body-parser");
 
-var Socket_bag = [];
+
 
 var app = express()
 var server = app.listen(3000, function(){
@@ -65,17 +70,25 @@ io.use(passportSocketIo.authorize({
 io.on("connection",function(socket){
 	console.log("socket connection has been constructed");
 	if(socket.request.user.logged_in){
-		Socket_bag.push(socket);
-		console.log(Socket_bag.length)
+		var restaurantName = socket.request.user.restaurants[0];
+		if(Socket_bag[restaurantName] == null){
+			Socket_bag[restaurantName] = [{lastUpdate : Date(), socket : socket}];
+		}else{
+			Socket_bag[restaurantName].push({lastUpdate: Date(), socket: socket});
+		}
+		 DataBaseApi.getAllOrders(restaurantName).then((orders) => {
+			socket.emit("aktif_siparis_listesi_update",orders)
+		 }).catch((err) =>{console.log(err)})
+		
+		
 		socket.on("disconnect",function(){
-			for(var i = 0; i < Socket_bag.length; i++){
-				console.log(socket.request.user)
-				if(Socket_bag[i] === socket){
-					Socket_bag.splice(i, 1);
-					console.log("socket get out of the bag")
-					break;
+			var i = 0
+			Socket_bag[restaurantName].forEach(function(socketCandidate){
+				if(socketCandidate.socket === socket){
+					Socket_bag[restaurantName].splice(i,1);
 				}
-			}
+				i++;
+			})
 		})
 	}
 

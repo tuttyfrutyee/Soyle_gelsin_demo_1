@@ -2,16 +2,22 @@
 
 var socket = io("/");
 
+socket.on("aktif_siparis_listesi_update",function(data){
+	console.log(data);
+})
+
 var buttons = new Vue({
 	el:"#buttons",
 	data : {
 	},
 	methods:{
 		activateMasalar : function(){
-			console.log("activated masalar")
+			$("#masalar").show()
+			$("#aktif_siparis_listesi").hide()
 		},
 		activateAktifSiparisListesi : function(){
-			console.log("activated AktifSiparisListesi")
+			$("#masalar").hide()
+			$("#aktif_siparis_listesi").show()
 		}
 	}
 })
@@ -45,4 +51,16 @@ var tables = new Vue({
 		}
 	}
 })
+
+var aktif_siparis_listesi = new Vue({
+	el: "#aktif_siparis_listesi",
+	data : {
+		siparis_new_count : 0
+	},
+	methods:{
+
+	}
+})
+
+
 

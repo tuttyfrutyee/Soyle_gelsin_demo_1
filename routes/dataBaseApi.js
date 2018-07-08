@@ -52,18 +52,21 @@ public_api.joinTableAsCustomer = function(customerName , restaurantName , tableN
 }
 
 public_api.giveOrder = function(restaurantName , tableNo , customerName, productName ){
-	Restaurant.findOne({rIndicator : restaurantName} , function(err, restaurant){
-		if(!err){
-			var orders = restaurant.tables[tableNo-1].orders;
-			orders.push({productName:productName, customerName : customerName , orderDate : Date() , deliveryState : "Bekliyor"});
-			restaurant.save(function(err , changedRestaurant){
-				if(err)return false
-				else return true
+	return new Promise(function(resolve,reject){
+			Restaurant.findOne({rIndicator : restaurantName} , function(err, restaurant){
+			if(!err){
+				var orders = restaurant.tables[tableNo-1].orders;
+				orders.push({productName:productName, customerName : customerName , orderDate : Date() , deliveryState : "Bekliyor"});
+				restaurant.save(function(err , changedRestaurant){
+					if(err) reject("something went wrong when saving")
+					else resolve(changedRestaurant)
+				})
+			}else{
+				return reject("something went wrong when finding restaurant")
+				}
 			})
-		}else{
-			return false
-		}
 	})
+
 };
 
 public_api.createUser = function(username , password ,restaurantName, isAdmin){
@@ -95,5 +98,49 @@ public_api.addCostToOrderInTable = function(restaurant , table){
 		} 
 	
 }
+public_api.getAllOrders = function(restaurantName){
+	return new Promise(function(resolve,reject){
+			Restaurant.findOne({rIndicator : restaurantName}).lean().exec(function(err,restaurant){
+
+			if(!err && restaurant){
+				var orders = new Array()
+				restaurant.tables.forEach(function(table){
+					orders = orders.concat(table.orders);
+				});
+				resolve(orders);
+			}else{
+				reject("whouups something went wrong when getting all the orders")
+			}
+				
+		})
+			})
+	}
+
+public_api.getUpdatedOrders = function(restaurantName, lastUpdate){
+	return new Promise(function(resolve,reject){
+		Restaurant.findOne({rIndicator : restaurantName},function(err,restaurant){
+			if(!err && restaurant){
+				var orders = new Array()
+				restaurant.tables.forEach(function(table){
+					table.orders.forEach(function(order){
+						if(order.orderDate > restaurant.lastUpdate){
+							orders.push(order);
+						}
+					})
+				})
+				restaurant.lastUpdate = Date()
+				restaurant.save(function(err , changedRestaurant){
+					if(err) reject("something went wrong when saving // from getUpdatedOrders")
+					else resolve(orders);
+				})
+				
+			}else{
+				reject("whoops something went wrong when getting updated orders")
+			}
+		})
+	})
+}
+
+
 
 module.exports = public_api;

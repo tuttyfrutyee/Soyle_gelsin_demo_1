@@ -78,7 +78,15 @@ router.post("/dataBase/maker/createTables",function(req,res){
 });
 
 router.post("/dataBase/maker/orderFood",function(req,res){
-	DataBaseApi.giveOrder(req.body.restaurantName , req.body.tableNo , req.body.customerName, req.body.productName )
+	DataBaseApi.giveOrder(req.body.restaurantName , req.body.tableNo , req.body.customerName, req.body.productName ).then((updatedRestaurant)=> {
+				DataBaseApi.getUpdatedOrders(req.body.restaurantName , Date()).then(function(updatedOrderList){
+					console.log(updatedOrderList)
+					Socket_bag[req.body.restaurantName].forEach(function(socket_bag){
+					socket_bag.socket.emit("aktif_siparis_listesi_update",updatedOrderList )
+					})
+				}).catch(function(err){console.log(err)})
+		})
+	//socket emitting for realtime data
 	res.end("gaveTheOrder")
 })
 
