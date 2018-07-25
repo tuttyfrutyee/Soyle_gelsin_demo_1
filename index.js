@@ -28,7 +28,7 @@ var server = app.listen(3000, function(){
 });
 var io = socketio(server);
 
-//database connection 
+//database connection
 mongoose.connect(secrets.mLab_connect,function(err){
 	if(err) console.log(err)
 	else console.log("connected to mLab");
@@ -63,8 +63,8 @@ io.use(passportSocketIo.authorize({
 	secret : "tuttyfrutyee",
 	store : myMongoStore,
 	cookieParser : cookieParser,
-	success:  onAuthorizeSuccess, 
-    fail:    onAuthorizeFail, 
+	success:  onAuthorizeSuccess,
+    fail:    onAuthorizeFail,
 }))
 
 io.on("connection",function(socket){
@@ -76,11 +76,9 @@ io.on("connection",function(socket){
 		}else{
 			Socket_bag[restaurantName].push({lastUpdate: Date(), socket: socket});
 		}
-		 DataBaseApi.getAllOrders(restaurantName).then((orders) => {
-			socket.emit("aktif_siparis_listesi_update",orders)
-		 }).catch((err) =>{console.log(err)})
-		
-		
+		 //making browsers to update the button javascripts...
+		socket.emit("aktif_siparis_listesi_update","" )
+
 		socket.on("disconnect",function(){
 			var i = 0
 			Socket_bag[restaurantName].forEach(function(socketCandidate){
@@ -99,16 +97,16 @@ io.on("connection",function(socket){
 
 function onAuthorizeSuccess(data, accept){
   console.log('successful connection to socket.io');
- 
+
   // The accept-callback still allows us to decide whether to
   // accept the connection or not.
   accept(null, true);}
- 
+
 function onAuthorizeFail(data, message, error, accept){
   if(error)
-    throw new Error(message);
+	console.log(message);
   console.log('failed connection to socket.io:', message);
- 
+
   // We use this callback to log all of our failed connections.
   accept(null, false);
 }

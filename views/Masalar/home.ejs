@@ -10,39 +10,45 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
-	<!-- NavBar -->
-<nav class="navbar navbar-light bg-primary ">
-<ul class="nav justify-content-end">
-  <li class="nav-item">
-    <a class="nav-link text-white" href="/logout">Oturumu Kapat</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white" href="#"></a>
-  </li>
-</ul>
-</nav>
+		<!-- NavBar -->
+	<nav class="navbar navbar-light bg-primary ">
+	<ul class="nav justify-content-end">
+	  <li class="nav-item">
+	    <a class="nav-link text-white" href="/logout">Oturumu Kapat</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link text-white" href="#"></a>
+	  </li>
+	</ul>
+	</nav>
+
+	<!-- Alert For Closing An Table -->
+	<div id = "alert" class="switch_off myClass_alert alert alert-danger alert-dismissible fade show" role="alert">
+			<p style = "text-align: center;"><strong>Masayı Kapatmak İstediginizden Emin Misiniz ?</strong></p>
+			<button id="alert_yesButton" type = "button" class="myClass_alert_rightYes" > Evet </button>
+			<button id="alerty_noButton" type = "button" class= "myClass_alert_leftNo" > Hayır </button>
+	</div>
+
 	<!-- Content -->
 	<div id = "wrapper" class = "container">
 		<!--Navigation buttons -->
-		<div id="buttons" class="row" style = "margin-bottom: 2vmin; margin-top : 1vmin">
-			<div class=col-sm-5></div>
-			<div class="btn-group col-sm-2" role="group" >
-		  		<button v-on:click = "activateMasalar()" type="button" class="btn btn-secondary">Masalar</button>
+		<div id="buttons" class="row" style = "margin-bottom: 2vmin; margin-top : 1vmin; position : relative">
+			<div class="btn-group" style = "left : 40%" role="group" >
+		  	 <button v-on:click = "activateMasalar()" type="button" class="btn btn-secondary">Masalar</button>
 		 		 <button v-on:click="activateAktifSiparisListesi()" type="button" class="btn btn-secondary">Sipariş Listesi</button>
-		     </div>
-	     	<div class=col-sm-5></div>
+		  </div>
 	 	</div>
 	 	<!--Show panel -->
 		<div id ="contents" class="row">
-			<div id="masalar">
+			<div id="masalar" style = "width : 100%">
 				<%- include("masalar.ejs" , {"tables" : tables}); %>
 			</div>
 			<div  id="aktif_siparis_listesi" class ="switch_off" style ="width : 100%">
-				<%- include("aktif_siparis_listesi.ejs"); %>
+				<%- include("aktif_siparis_listesi.ejs" , {orders : orders}); %>
 			</div>
 		</div>
     </div>
-
+<script src="./Masalar/functions.js"></script>
 <script src ="./Masalar/script.js"></script>
 </body>
 </html>
