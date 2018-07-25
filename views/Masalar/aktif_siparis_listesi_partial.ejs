@@ -1,0 +1,29 @@
+<%for(var i = 0; i < data.length ; i++) { %>
+<tr style = "text-align : center" id="<%=data[i]._id%>">
+
+  <td><%=data[i].tableNo%></td>
+  <td><%=data[i].customerName%></td>
+  <td><%=data[i].productName%></td>
+  <td><%=data[i].orderCount%></td>
+  <td><%=data[i].orderDate.getHours()%> : <%if(data[i].orderDate.getMinutes()<10){%>0<%}%><%=data[i].orderDate.getMinutes()%></td>
+
+  <%if(data[i].deliveryState === "Bekliyor"){%>
+  <td style = "background-color : orange"><%=data[i].deliveryState%></td>
+  <%} else if(data[i].deliveryState === "Alındı"){ %>
+  <td style = "background-color : green; color : white"><%=data[i].deliveryState%></td>
+  <%}%>
+
+  <%if(data[i].deliveryState === "Bekliyor"){%>
+    <td style="background-color : white">
+      <button type="button" class="btn btn-primary">Siparişi al</button>
+    </td>
+  <%} else if(data[i].deliveryState === "Alındı"){ %>
+    <td style="background-color : white">
+      <button type="button" class="btn btn-success">Teslim Et</button>
+    </td>
+  <%}%>
+
+
+
+</tr>
+<%}%>
