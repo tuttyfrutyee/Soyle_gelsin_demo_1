@@ -32,11 +32,43 @@ align-items: center;
 	background-color :	#C0C0C0 ;
 }
 .stick_it{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 5vmin ;
+  position : fixed;
+  top: 18vmin ;
+	width : 40%;
 }
 
 .switch_off{
 	display : none;
+}
+.switch_on{
+	display : block;
+}
+
+.myClass_alert{
+	color : black;
+	position : fixed;
+	background-color: red;
+	border-radius: 5px;
+	padding-right: 20px;
+	opacity : 0.9;
+	top : 30%;
+	left : 30%;
+	width : 40%;
+	z-index: 35;
+}
+.myClass_alert_leftNo{
+	color : black;
+	margin-left: 10%;
+	width : 30%;
+	border-radius: 5px;
+	box-sizing : border-box;
+}
+
+.myClass_alert_rightYes{
+	color : black;
+ 	margin-left : 15%;
+	width : 30%;
+	border-radius: 5px;
+	box-sizing : border-box;
+
 }

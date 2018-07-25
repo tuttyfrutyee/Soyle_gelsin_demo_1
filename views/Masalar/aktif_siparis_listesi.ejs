@@ -1,32 +1,19 @@
-<table class="table table-striped">
+<!-- Yemek durumları : Bekleniyor , Alındı , Teslim Edildi-->
+<!-- Button adları : Siparişi al , Teslim et -->
+<table class="table table-striped" style="text-align : center">
   <thead>
     <tr>
       <th scope="col">Masa Numarası</th>
       <th scope="col">İsim</th>
       <th scope="col">Siparis Adı</th>
+      <th scope="col">Sipariş Sayısı</th>
       <th scope="col">Söylenme Zamanı</th>
       <th scope="col">Siparis Durumu</th>
+      <th scope="col">İşlem</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td style="background-color: orange">Pending...</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <%- include("aktif_siparis_listesi_partial.ejs" , {data : orders}); %>
+
   </tbody>
 </table>

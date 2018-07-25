@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const schemaTable = require("./schema-Table.js");
-const schemaFood = require("./schema-Food.js");
+const schemaFoodKind = require("./schema-FoodKind.js");
 
 var schemaRestaurant = new Schema({
 	rIndicator : String,
-	products : [schemaFood],
+	productKinds : [schemaFoodKind],
 	tables : [schemaTable],
 	lastUpdate : Date
 })

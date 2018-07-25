@@ -1,31 +1,33 @@
 	<div class="row">
 							<!--Tables -->
 				<div class="col-sm-6" id="tables">
-						<div class="shadow-sm p-2 mb-5 bg-white rounded"> 
+						<div class="shadow-sm p-2 mb-5 bg-white rounded">
 							<div class="row">
 										<% for(var i = 0; i < tables.length ; i++){ %>
-										<div class="col-sm-3" style = "height : 10vmin ; text-align: center; margin-bottom : 2vmin" >
+										<div class="col-md-3 col-6 col-sm-4" style = "height : 10vmin ; text-align: center; margin-bottom : 2vmin" >
 												 <% if(tables[i]){ %>
 													<div v-on:click="show_detail(<%=i%>)" id = "card_<%=i%>" class="masa_card online">
 													<%	}else{ %>
 													<div v-on:click="show_detail(<%=i%>)" id = "card_<%=i%>" class="masa_card offline">
 													<%}%>
-														<div class="masa_card_context"> 									
-														<p class="index_Numbers "><%=i+1%></p> 
-														 </div>								
+														<div class="masa_card_context">
+														<p class="index_Numbers "><%=i+1%></p>
+														 </div>
 													</div>
 										</div>
 										<% } %>
-										</div>					
-							</div>				
+										</div>
+							</div>
 						</div>
-								<!--Table Info -->
-						<div  class="col-sm-6" id="table_info">
+								<!--Table Info class=""-->
+						<div  class="col-sm-6"  id="table_info">
+
 								<div class="jumbotron" v-show ="seenPHolder">
 					  				<h1 class="display-6">Masa detayı için, bir masaya tıklayınız.</h1>
 					  				<hr class="my-4">
 								</div>
-								<div id="table_info_container">
+
+								<div id="table_info_container" class="stick_it">
 								</div>
 
 						</div>

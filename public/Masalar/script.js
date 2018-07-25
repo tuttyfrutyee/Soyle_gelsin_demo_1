@@ -1,11 +1,30 @@
+
+//SOME NEEDED FUNCTIONS FOR BUTTONS
+var alert = function(masaIndex){
+	var $alert = $("#alert");
+	$alert.children("p").html("<strong>" + masaIndex + " Numaralı Masayı Kapatmak İstediginizden Emin Misiniz ?" + "</strong>");
+	$alert.removeClass("switch_off");
+	$alert.addClass("switch_on");
+
+}
+//SOCKET BUSINESS
+
 //Make soccet connection
 
 var socket = io("/");
 
 socket.on("aktif_siparis_listesi_update",function(data){
-	console.log(data);
+		$( "#aktif_siparis_listesi tbody").first().prepend(data)
+		$("#aktif_siparis_listesi tbody tr").each(function(index){
+						var orderIdNumber = $(this).attr("id")
+						$(this).children().each(function(index){
+							if(index === 6){
+								$(this).first().click( function(){return handleOrderButton(orderIdNumber); } )
+							}
+						})
+		})
 })
-
+//	VUE JS
 var buttons = new Vue({
 	el:"#buttons",
 	data : {
@@ -46,7 +65,7 @@ var tables = new Vue({
 						$("#customerList").toggleClass("switch_off");
 					})
 				}
-				
+
 			})
 		}
 	}
@@ -61,6 +80,3 @@ var aktif_siparis_listesi = new Vue({
 
 	}
 })
-
-
-
