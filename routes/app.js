@@ -5,6 +5,7 @@ var Restaurant = require("../models/Restaurant/model-Restaurant.js")
 var User = require("../models/User/model-User.js")
 var DataBaseApi = require("./dataBaseApi.js")
 var ejs = require("ejs");
+var path = require("path")
 
 router.get("/",function(req,res){
 	res.redirect("/login");
@@ -23,6 +24,7 @@ router.get("/logout",function(req,res){
 router.get("/home",function(req,res){
 	if(req.user){
 	 Restaurant.findOne({rIndicator : req.user.restaurants[0]}, function(err, restaurant){
+		 console.log("found the restaurant ")
 	 	if(restaurant){
 	  var tables = [];
 	  restaurant.tables.forEach(function(table){
@@ -51,6 +53,7 @@ router.get("/signIn",function(req,res){
 })
 
 router.post("/home",function(req,res){
+	console.log("hello everyone")
 	  passport.authenticate('local', function(err, user, info) {
     if (err) {
     	return res.redirect("/home"); }
@@ -81,10 +84,12 @@ router.post("/dataBase/maker/createTables",function(req,res){
 	res.end("createdTables");
 });
 
+var path = path.resolve(__dirname + "../../views/Masalar/aktif_siparis_listesi_partial.ejs" )
+
 router.post("/dataBase/maker/orderFood",function(req,res){
 	DataBaseApi.giveOrder(req.body.restaurantName , req.body.tableNo , req.body.customerName,req.body.kType, req.body.productName, req.body.orderCount ).then((updatedRestaurant)=> {
 				DataBaseApi.getUpdatedOrders(req.body.restaurantName , Date()).then(function(updatedOrderList){
-					ejs.renderFile('/Users/tuttyfruty/Documents/Soyle_gelsin_demo_1/views/Masalar/aktif_siparis_listesi_partial.ejs', {data : updatedOrderList}, function(err, str){
+					ejs.renderFile(path, {data : updatedOrderList}, function(err, str){
 						console.log(err)
 						console.log(updatedOrderList)
 							Socket_bag[req.body.restaurantName].forEach(function(socket_bag){

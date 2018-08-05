@@ -191,6 +191,7 @@ public_api.getUpdatedOrders = function(restaurantName, lastUpdate){
 }
 
 public_api.getAllPendingOrdersWithOrder = function(restaurant){
+	console.log("hello baby")
 	var pendingOrders = new Array();
 	var launchingOrders = new Array();
 	restaurant.tables.forEach(function(table){
@@ -204,7 +205,7 @@ public_api.getAllPendingOrdersWithOrder = function(restaurant){
 			}
 		})
 	})
-	console.log(pendingOrders.length + launchingOrders.length)
+	console.log("hello baby 2")
 	return pendingOrders.concat(launchingOrders);
 }
 
