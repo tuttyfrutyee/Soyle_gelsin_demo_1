@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
   "name": "Soyle_gelsin_demo",
   "version": "1.0.0",
@@ -26,7 +26,7 @@
     "socket.io": "^2.1.1"
   }
 }
-=======
+
 {
   "name": "Soyle_gelsin_demo",
   "version": "1.0.0",
@@ -54,4 +54,4 @@
     "socket.io": "^2.1.1"
   }
 }
->>>>>>> e653fe99fc378ae012181708c1ccc4957b0ab737
+
